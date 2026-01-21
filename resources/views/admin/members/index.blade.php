@@ -1,0 +1,32 @@
+@extends('layouts.admin')
+
+@section('content')
+<div class="card">
+    <div class="page-header">
+        <h2>Members</h2>
+        <a href="/admin/members/create" class="btn btn-primary">+ Add Member</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Total Donations</th>
+            <th>Total Amount</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach($members as $m)
+        <tr>
+            <td>{{ $m->name }}</td>
+            <td>{{ $m->mobile }}</td>
+            <td>{{ $m->donations_count }}</td>
+            <td>₹{{ $m->donations_sum_amount ?? 0 }}</td>
+            <td>
+                <a href="/admin/members/{{ $m->id }}" class="btn btn-sm">View</a>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+</div>
+@endsection
