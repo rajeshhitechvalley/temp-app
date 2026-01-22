@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\MonthlyReportController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Admin\LoanController;
 
 Route::get('/lang/{lang}', function ($lang) {
     if (in_array($lang, ['en', 'ne'])) {
@@ -37,4 +38,8 @@ Route::middleware('admin')->group(function(){
  Route::get('/admin/expenses/create',[ExpenseController::class,'create']);
  Route::post('/admin/expenses',[ExpenseController::class,'store']);
  Route::get('/admin/reports/monthly',[MonthlyReportController::class,'index']);
+});
+
+Route::prefix('admin')->middleware(['web'])->group(function () {
+    Route::resource('loans', LoanController::class);
 });

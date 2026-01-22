@@ -6,7 +6,7 @@
 
     <div class="page-header">
         <h2>✏ Edit Donation</h2>
-        <a href="/admin/donations" class="btn btn-secondary">← Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">← Back</a>
     </div>
 
     <form method="POST" action="/admin/donations/{{ $donation->id }}">

@@ -51,7 +51,7 @@ class DonationController extends Controller
             'donation_date' => $r->donation_date,
         ]);
 
-        return redirect('/admin/donations')
+        return redirect('/donations')
             ->with('success', 'Donation added successfully');
     }
     public function edit(Donation $donation)

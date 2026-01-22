@@ -6,17 +6,17 @@
 
     <div class="page-header">
         <h2>➕ Add Donation</h2>
-        <a href="/admin/donations" class="btn btn-secondary">← Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">← Back</a>
     </div>
 
-    <form method="POST" action="/admin/donations">
+    <form method="POST" action="/donations">
         @csrf
 
         {{-- MEMBER SECTION --}}
         <h3>Member Details</h3>
 
         <label>Select Existing Member</label>
-        <select name="member_id">
+        <select name="member_id" id="member_id_select">
             <option value="">➕ New Member</option>
             @foreach($members as $m)
                 <option value="{{ $m->id }}">
@@ -25,18 +25,20 @@
             @endforeach
         </select>
 
-        <hr>
+        <div id="new-member-section">
+            <hr>
 
-        <label>Member Name (for new member)</label>
-        <input type="text" name="member_name" placeholder="Enter member name">
+            <label>Member Name (for new member)</label>
+            <input type="text" name="member_name" placeholder="Enter member name">
 
-        <label>Mobile</label>
-        <input type="text" name="member_mobile" placeholder="98XXXXXXXX">
+            <label>Mobile</label>
+            <input type="text" name="member_mobile" placeholder="98XXXXXXXX">
 
-        <label>Address</label>
-        <input type="text" name="member_address" placeholder="Village / Ward">
+            <label>Address</label>
+            <input type="text" name="member_address" placeholder="Village / Ward">
 
-        <hr>
+            <hr>
+        </div>
 
         {{-- DONATION DETAILS --}}
         <h3>Donation Details</h3>
@@ -71,3 +73,19 @@
 </div>
 
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var select = document.getElementById('member_id_select');
+    var newMemberSection = document.getElementById('new-member-section');
+    function toggleNewMemberSection() {
+        if (select.value && select.value !== "") {
+            newMemberSection.style.display = 'none';
+        } else {
+            newMemberSection.style.display = 'block';
+        }
+    }
+    select.addEventListener('change', toggleNewMemberSection);
+    toggleNewMemberSection();
+});
+</script>
