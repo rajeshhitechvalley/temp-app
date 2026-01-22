@@ -10,11 +10,18 @@ class DonationController extends Controller
 {
     public function index()
     {
-        $donations = Donation::with('member')
-            ->whereHas('member')
-            ->latest()
-            ->get();
-
+        // $donations = Donation::with('member')
+        //     ->whereHas('member')
+        //     ->latest()
+        //     ->get();
+ $donations = Donation::with([
+        'member' => function ($q) {
+            $q->withCount('donations');
+        }
+    ])
+    ->whereHas('member')
+    ->orderBy('donation_date', 'desc')
+    ->get();
         //dd($donations);
         return view('donations.index', compact('donations'));
     }

@@ -25,7 +25,7 @@
                 <td>
                     @if($d->member)
                         <a href="/admin/members/{{ $d->member->id }}">
-                            {{ $d->member->name }}
+                            {{ $d->member->name }} ({{ $d->member->donations_count }})
                         </a>
                     @else
                         Anonymous
