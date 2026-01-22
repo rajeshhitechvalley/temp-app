@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\MonthlyReportController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Admin\LoanController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/lang/{lang}', function ($lang) {
     if (in_array($lang, ['en', 'ne'])) {
@@ -16,7 +17,10 @@ Route::get('/lang/{lang}', function ($lang) {
     return back();
 });
 
-Route::get('/',fn()=>view('welcome'));
+Route::get('/', [HomeController::class, 'index']);
+
+
+Route::middleware('admin')->group(function(){
 Route::resource('/admin/members', MemberController::class);
 
 Route::get('/donations',[DonationController::class,'index']);
@@ -31,8 +35,6 @@ Route::get('/admin/donations/{donation}/edit', [DonationController::class, 'edit
 Route::put('/admin/donations/{donation}', [DonationController::class, 'update']);
 Route::delete('/admin/donations/{donation}', [DonationController::class, 'destroy']);
 
-
-Route::middleware('admin')->group(function(){
  Route::get('/admin/dashboard',[AdminDashboardController::class,'index']);
  Route::get('/admin/expenses',[ExpenseController::class,'index']);
  Route::get('/admin/expenses/create',[ExpenseController::class,'create']);

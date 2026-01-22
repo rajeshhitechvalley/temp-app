@@ -22,7 +22,7 @@
                 <td>{{ $m->name }}</td>
                 <td>{{ $m->mobile }}</td>
                 <td>{{ $m->donations_count }}</td>
-                <td>₹{{ $m->donations_sum_amount ?? 0 }}</td>
+                <td>Rs.{{ $m->donations_sum_amount ?? 0 }}</td>
                 <td>
                     <a href="/admin/members/{{ $m->id }}" class="btn btn-sm">View</a>
                 </td>

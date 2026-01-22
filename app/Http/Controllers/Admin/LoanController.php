@@ -11,6 +11,12 @@ class LoanController extends Controller
     public function index()
     {
         $loans = Loan::all();
+        // Add remaining days calculation for each loan
+        foreach ($loans as $loan) {
+            $end = \Carbon\Carbon::parse($loan->date_taken)->addDays($loan->duration);
+            $now = now();
+            $loan->remaining_days = $now->greaterThan($end) ? 0 : $now->diffInDays($end, false);
+        }
         return view('admin.loans.index', compact('loans'));
     }
 

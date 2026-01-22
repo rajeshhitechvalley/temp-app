@@ -14,6 +14,7 @@
                 <th>Date Taken</th>
                 <th>Interest (%)</th>
                 <th>Duration (days)</th>
+                <th>Remaining Days</th>
                 <th>Countdown</th>
                 <th>Action</th>
             </tr>
@@ -21,10 +22,11 @@
             <tr>
                 <td>{{ $loan->person_name }}</td>
                 <td>{{ $loan->mobile_no }}</td>
-                <td>₹{{ $loan->amount }}</td>
+                <td>Rs.{{ $loan->amount }}</td>
                 <td>{{ $loan->date_taken }}</td>
                 <td>{{ $loan->interest }}</td>
                 <td>{{ $loan->duration }}</td>
+                <td>{{ $loan->remaining_days }}</td>
                 <td>{{ $loan->countdown }}</td>
                 <td>
                     <a href="/admin/loans/{{ $loan->id }}/edit" class="btn btn-sm">Edit</a>

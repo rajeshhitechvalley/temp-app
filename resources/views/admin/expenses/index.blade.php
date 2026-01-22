@@ -17,7 +17,7 @@
         <tr>
             <td>{{ $e->expense_date }}</td>
             <td>{{ $e->title }}</td>
-            <td>₹{{ $e->amount }}</td>
+            <td>Rs.{{ $e->amount }}</td>
         </tr>
         @endforeach
     </table>

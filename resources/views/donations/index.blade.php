@@ -31,7 +31,7 @@
                         Anonymous
                     @endif
                 </td>
-                <td>₹{{ $d->amount }}</td>
+                <td>Rs.{{ $d->amount }}</td>
                 <td>{{ $d->mode }}</td>
                 <td>
                     <a href="/admin/donations/{{ $d->id }}/edit" class="btn btn-sm">Edit</a>

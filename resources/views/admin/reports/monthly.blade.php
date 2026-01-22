@@ -30,9 +30,9 @@
 </div>
 
 <div class="grid">
-    <div class="card">Donation<div class="stat">₹{{ $totalDonation }}</div></div>
-    <div class="card">Expense<div class="stat">₹{{ $totalExpense }}</div></div>
-    <div class="card">Balance<div class="stat">₹{{ $balance }}</div></div>
+    <div class="card">Donation<div class="stat">Rs.{{ $totalDonation }}</div></div>
+    <div class="card">Expense<div class="stat">Rs.{{ $totalExpense }}</div></div>
+    <div class="card">Balance<div class="stat">Rs.{{ $balance }}</div></div>
 </div>
 
 <div class="card">
@@ -44,8 +44,16 @@
         @foreach($donations as $d)
         <tr>
             <td>{{ $d->created_at->format('d M Y') }}</td>
-            <td>{{ $d->member->name }}</td>
-            <td>₹{{ $d->amount }}</td>
+            <td>
+                @if($d->member)
+                    <a href="/admin/members/{{ $d->member->id }}">
+                        {{ $d->member->name }}
+                    </a>
+                @else
+                    Anonymous
+                @endif
+            </td>
+            <td>Rs.{{ $d->amount }}</td>
             <td>{{ $d->mode }}</td>
         </tr>
         @endforeach
@@ -61,9 +69,8 @@
         @foreach($expenses as $e)
         <tr>
             <td>{{ $e->expense_date }}</td>
-              <td>{{ $e->member->name }}</td>
             <td>{{ $e->title }}</td>
-            <td>₹{{ $e->amount }}</td>
+            <td>Rs.{{ $e->amount }}</td>
         </tr>
         @endforeach
     </table>

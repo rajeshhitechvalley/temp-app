@@ -20,7 +20,8 @@ class MonthlyReportController extends Controller
             ->get();
 
 
-        $expenses = Expense::whereMonth('expense_date', $month)
+        $expenses = Expense::with('member')
+            ->whereMonth('expense_date', $month)
             ->whereYear('expense_date', $year)
             ->get();
 
