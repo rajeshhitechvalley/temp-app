@@ -16,7 +16,8 @@ class DonationController extends Controller
         //     ->get();
  $donations = Donation::with([
         'member' => function ($q) {
-            $q->withCount('donations');
+            $q->withCount('donations')
+              ->withSum('donations', 'amount');
         }
     ])
     ->whereHas('member')

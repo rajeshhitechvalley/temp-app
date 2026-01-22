@@ -18,6 +18,10 @@ Route::get('/lang/{lang}', function ($lang) {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/admin/login',[AdminAuthController::class,'login']);
+Route::post('/admin/login',[AdminAuthController::class,'doLogin']);
+Route::get('/admin/logout',[AdminAuthController::class,'logout']);
+
 
 
 Route::middleware('admin')->group(function(){
@@ -27,9 +31,6 @@ Route::get('/donations',[DonationController::class,'index']);
 Route::get('/admin/donations/create',[DonationController::class,'create']);
 Route::post('/donations',[DonationController::class,'store']);
 
-Route::get('/admin/login',[AdminAuthController::class,'login']);
-Route::post('/admin/login',[AdminAuthController::class,'doLogin']);
-Route::get('/admin/logout',[AdminAuthController::class,'logout']);
 
 Route::get('/admin/donations/{donation}/edit', [DonationController::class, 'edit']);
 Route::put('/admin/donations/{donation}', [DonationController::class, 'update']);

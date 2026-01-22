@@ -24,22 +24,26 @@
                 <td>{{ $d->donation_date }}</td>
                 <td>
                     @if($d->member)
-                        <a href="/admin/members/{{ $d->member->id }}">
-                            {{ $d->member->name }} ({{ $d->member->donations_count }})
-                        </a>
+                    <strong>{{ $d->member->name }}</strong><br>
+
+                    <small>
+                        {{ $d->member->donations_count }} donations |
+                        ₹{{ number_format($d->member->donations_sum_amount, 2) }}
+                    </small>
                     @else
-                        Anonymous
+                    <em>Anonymous</em>
                     @endif
                 </td>
+
                 <td>Rs.{{ $d->amount }}</td>
                 <td>{{ $d->mode }}</td>
                 <td>
                     <a href="/admin/donations/{{ $d->id }}/edit" class="btn btn-sm">Edit</a>
 
                     <form method="POST"
-                          action="/admin/donations/{{ $d->id }}"
-                          style="display:inline;"
-                          onsubmit="return confirm('Delete this donation?')">
+                        action="/admin/donations/{{ $d->id }}"
+                        style="display:inline;"
+                        onsubmit="return confirm('Delete this donation?')">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger">Delete</button>
@@ -59,12 +63,15 @@
         width: 100%;
         overflow-x: auto;
     }
+
     @media (max-width: 600px) {
         table {
             font-size: 14px;
             min-width: 500px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 8px;
         }
     }
